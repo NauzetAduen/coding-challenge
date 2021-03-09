@@ -10,4 +10,6 @@ This project was developed with the following configuration (pubspec.yaml)
 
     flutter channel stable 2.0.0
 
+Tested in a real device
 
+    Huawei P30 Pro

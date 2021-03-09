@@ -1,23 +1,15 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(MyApp());
-}
+void main() => runApp(CodingChallengeApp());
 
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        home: CodingChallenge());
-  }
-}
+const appName = "Coding Challenge";
 
-class CodingChallenge extends StatelessWidget {
+class CodingChallengeApp extends StatelessWidget {
   @override
-  Widget build(BuildContext context) =>
-      const Scaffold(body: Center(child: Text("Abc")));
+  Widget build(BuildContext context) => MaterialApp(
+      title: appName,
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: const Scaffold(body: Center(child: Text("Abc"))));
 }
