@@ -18,7 +18,6 @@ class MyApp extends StatelessWidget {
 
 class CodingChallenge extends StatelessWidget {
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(body: Center(child: Text("Abc")));
-  }
+  Widget build(BuildContext context) =>
+      const Scaffold(body: Center(child: Text("Abc")));
 }
