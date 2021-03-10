@@ -1,9 +1,19 @@
 def localProperties = new Properties()
 def localPropertiesFile = rootProject.file('local.properties')
+
+
+
+
 if (localPropertiesFile.exists()) {
     localPropertiesFile.withReader('UTF-8') { reader ->
         localProperties.load(reader)
     }
+}
+
+
+def googleMapApiKey = localProperties.getProperty('google.map.key')
+if(googleMapApiKey==null){
+    throw new GradleException("GoogleMap Api Key not found. Write it down in your local.properties file with a name variable of 'google.map.key'.")
 }
 
 def flutterRoot = localProperties.getProperty('flutter.sdk')
@@ -39,6 +49,7 @@ android {
         targetSdkVersion 30
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+        manifestPlaceholders = [googleMapApiKey: googleMapApiKey]
     }
 
     buildTypes {
