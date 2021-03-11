@@ -7,6 +7,7 @@ import '../entities/venue.dart';
 import '../repositories/venues_repository.dart';
 import 'usecases.dart';
 
+//usecase for simple venues, w/o anything extra, like intents
 class GetVenues implements UseCase<List<Venue>, QueryParams> {
   VenuesRepository repository;
 

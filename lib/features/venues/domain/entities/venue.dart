@@ -1,6 +1,10 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 
+/*
+  Simple venue entity
+  which use own Location and Category classes
+*/
 class Venue extends Equatable {
   final String id;
   final String name;
@@ -18,25 +22,29 @@ class Venue extends Equatable {
   List<Object> get props => [id, name, location, category];
 }
 
-class Location {
+class Location extends Equatable {
   final String locationName;
   final double latitude;
   final double longitude;
-  final double distance;
+  final int distance;
 
-  //TODO (Add @required to location constructor)
   const Location({
     @required this.locationName,
     @required this.latitude,
     @required this.longitude,
     @required this.distance,
   });
+
+  @override
+  List<Object> get props => [locationName, latitude, longitude, distance];
 }
 
-class Category {
+class Category extends Equatable {
   final String name;
   final String photoUrl;
 
-  //TODO (Add @required to category constructor)
   const Category({@required this.name, @required this.photoUrl});
+
+  @override
+  List<Object> get props => [name, photoUrl];
 }

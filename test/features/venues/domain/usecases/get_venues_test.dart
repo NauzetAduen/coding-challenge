@@ -15,6 +15,7 @@ void main() {
     usecase = GetVenues(repository: mockVenuesRepository);
   });
 
+  //const variables, not modifiable by our setup function
   const Venue mockVenue = Venue(
       id: "id",
       name: "Hotel abc",
@@ -24,7 +25,6 @@ void main() {
           longitude: 1.0,
           latitude: 1.0),
       category: Category(name: "hotel", photoUrl: "123.com/1.png"));
-
   const List<Venue> mockVenueList = [mockVenue];
   const QueryParams mockQueryParams = QueryParams("Las Palmas");
 
