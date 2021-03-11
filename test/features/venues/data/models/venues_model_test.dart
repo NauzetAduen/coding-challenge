@@ -28,20 +28,18 @@ void main() {
     },
   );
 
-  test('should get a valid model from a fixture', () async {
+  group('fromJson', () {
     final Map<String, dynamic> jsonMap =
         json.decode(fixture('venue.json')) as Map<String, dynamic>;
 
     final result = VenueModel.fromJson(
         jsonMap['response']['venues'][0] as Map<String, dynamic>);
-    expect(result, isA<VenueModel>());
-  });
-  test('should parse the correct model from a fixture', () async {
-    final Map<String, dynamic> jsonMap =
-        json.decode(fixture('venue.json')) as Map<String, dynamic>;
 
-    final result = VenueModel.fromJson(
-        jsonMap['response']['venues'][0] as Map<String, dynamic>);
-    expect(result, venueModel);
+    test('should get a valid model from a fixture', () async {
+      expect(result, isA<VenueModel>());
+    });
+    test('should parse the correct model from a fixture', () async {
+      expect(result, venueModel);
+    });
   });
 }
