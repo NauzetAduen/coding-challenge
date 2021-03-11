@@ -1,6 +1,5 @@
-import 'dart:html';
-
 import 'package:equatable/equatable.dart';
+import 'package:flutter/foundation.dart';
 
 class Venue extends Equatable {
   final String id;
@@ -8,7 +7,12 @@ class Venue extends Equatable {
   final Location location;
   final Category category;
 
-  const Venue(this.id, this.name, this.location, this.category);
+  const Venue({
+    @required this.id,
+    @required this.name,
+    @required this.location,
+    @required this.category,
+  });
 
   @override
   List<Object> get props => [id, name, location, category];
@@ -22,10 +26,10 @@ class Location {
 
   //TODO (Add @required to location constructor)
   const Location({
-    this.locationName,
-    this.latitude,
-    this.longitude,
-    this.distance,
+    @required this.locationName,
+    @required this.latitude,
+    @required this.longitude,
+    @required this.distance,
   });
 }
 
@@ -34,5 +38,5 @@ class Category {
   final String photoUrl;
 
   //TODO (Add @required to category constructor)
-  const Category(this.name, this.photoUrl);
+  const Category({@required this.name, @required this.photoUrl});
 }
