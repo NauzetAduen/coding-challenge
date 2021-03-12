@@ -30,7 +30,7 @@ void main() {
 
   group('fromJson', () {
     final Map<String, dynamic> jsonMap =
-        json.decode(fixture('venue.json')) as Map<String, dynamic>;
+        json.decode(fixture('response.json')) as Map<String, dynamic>;
 
     final result = VenueModel.fromJson(
         jsonMap['response']['venues'][0] as Map<String, dynamic>);
