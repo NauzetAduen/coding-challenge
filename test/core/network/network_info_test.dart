@@ -11,7 +11,8 @@ void main() {
 
   setUp(() {
     mockDataConnectionChecker = MockDataConnectionChecker();
-    netWorkInfoImpl = NetworkInfoImpl(mockDataConnectionChecker);
+    netWorkInfoImpl =
+        NetworkInfoImpl(connectionChecker: mockDataConnectionChecker);
   });
   group('isConected', () {
     test('should forward the call to DataConnectioncheker.hasConnection',
