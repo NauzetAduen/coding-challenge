@@ -15,11 +15,10 @@ class VenuesDataSourceImpl implements VenuesDataSource {
   Future<List<Venue>> getVenues(String query) async {
     try {
       final Response response = await dio.get(baseURL);
-      if (response.statusCode == 200) {
-        //SERIALIZE
-      }
-      print(response);
+      //TODO (DioError [DioErrorType.RESPONSE]: Http status error [400])
+      print(response.statusCode);
     } catch (e) {
+      print(e);
       rethrow;
     }
   }

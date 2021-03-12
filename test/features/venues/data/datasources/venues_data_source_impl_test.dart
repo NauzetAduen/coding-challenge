@@ -15,7 +15,8 @@ void main() {
   });
   test('should return a List of venues', () async {
     //
-    // when(mockDio.get(any)).thenAnswer((_) async => Response(data: {}));
+    when(mockDio.get(any))
+        .thenAnswer((_) async => Response(data: {}, statusCode: 200));
     await venuesDataSourceImpl.getVenues("query");
   });
 }
