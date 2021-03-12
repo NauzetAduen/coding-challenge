@@ -1,5 +1,5 @@
 name: coding_challenge
-description: A new Flutter project.
+description: Coding Challenge
 
 publish_to: 'none'
 version: 1.0.0+1
@@ -18,11 +18,7 @@ dependencies:
   google_maps_flutter: ^2.0.1
   
   
-  
-
-
-  
-
+ 
 dev_dependencies:
   flutter_test:
     sdk: flutter
