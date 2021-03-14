@@ -11,12 +11,13 @@ void main() {
 
   setUp(() {
     mockDio = MockDio();
-    venuesDataSourceImpl = VenuesDataSourceImpl(dio: mockDio);
+    // venuesDataSourceImpl = VenuesDataSourceImpl(dio: mockDio);
+    venuesDataSourceImpl = VenuesDataSourceImpl(dio: Dio());
   });
   test('should return a List of venues', () async {
     //
     when(mockDio.get(any))
         .thenAnswer((_) async => Response(data: {}, statusCode: 200));
-    await venuesDataSourceImpl.getVenues("query");
+    await venuesDataSourceImpl.getVenues({"near": "Las Palmas", "limit": 3});
   });
 }
