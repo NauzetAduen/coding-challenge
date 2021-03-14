@@ -16,10 +16,11 @@ class VenuesRepositoryImpl implements VenuesRepository {
     @required this.networkInfo,
   });
   @override
-  Future<Either<Failure, List<Venue>>> getVenues(String query) async {
+  Future<Either<Failure, List<Venue>>> getVenues(
+      Map<String, dynamic> queryParams) async {
     if (await networkInfo.isConnected) {
       try {
-        final venues = await venuesDataSource.getVenues(query);
+        final venues = await venuesDataSource.getVenues(queryParams);
         return Right(venues);
       } on ServerException {
         return Left(ServerFailure());

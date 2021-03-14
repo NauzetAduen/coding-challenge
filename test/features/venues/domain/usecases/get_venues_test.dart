@@ -26,7 +26,7 @@ void main() {
           latitude: 1.0),
       category: Category(name: "hotel", photoUrl: "123.com/1.png"));
   const List<Venue> mockVenueList = [mockVenue];
-  const QueryParams mockQueryParams = QueryParams("Las Palmas");
+  const QueryParams mockQueryParams = QueryParams({"near": "Las Palmas"});
 
   test('should get a list of venues from the repository', () async {
     when(mockVenuesRepository.getVenues(any))

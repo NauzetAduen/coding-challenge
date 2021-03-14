@@ -45,7 +45,7 @@ void main() {
         when(mockNetworkInfo.isConnected).thenAnswer((_) => Future.value(true));
       });
       test('should check if there is internet conection', () async {
-        await venuesRepositoryImpl.getVenues("query");
+        await venuesRepositoryImpl.getVenues({});
 
         verify(mockNetworkInfo.isConnected); //is connected is called
       });
@@ -53,13 +53,13 @@ void main() {
         when(mockVenuesDataSource.getVenues(any))
             .thenAnswer((_) async => mockVenueList);
 
-        final result = await venuesRepositoryImpl.getVenues("test");
+        final result = await venuesRepositoryImpl.getVenues({});
         expect(result, Right(mockVenueList));
       });
 
       test('should return ServerFailure when call ins unsuccessful', () async {
         when(mockVenuesDataSource.getVenues(any)).thenThrow(ServerException());
-        final result = await venuesRepositoryImpl.getVenues("test");
+        final result = await venuesRepositoryImpl.getVenues({});
 
         expect(result, Left(ServerFailure()));
       });
@@ -73,7 +73,7 @@ void main() {
 
     test('should return ConnectionFailure when is not connected to inet',
         () async {
-      final result = await venuesRepositoryImpl.getVenues("test");
+      final result = await venuesRepositoryImpl.getVenues({});
 
       expect(result, Left(ConnectionFailure()));
     });
