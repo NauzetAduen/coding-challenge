@@ -1,9 +1,6 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
+
 import 'core/router.dart';
-import 'features/venues/presentation/pages/main_view.dart';
 import 'injection.dart';
 
 void main() {

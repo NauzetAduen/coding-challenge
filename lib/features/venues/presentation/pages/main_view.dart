@@ -13,7 +13,23 @@ class MainView extends StatelessWidget {
       ),
       body: Column(
         children: [
-          const TextField(),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 36, vertical: 16),
+            child: SizedBox(
+              height: 60,
+              child: TextField(
+                //go vs search
+                //https://api.flutter.dev/flutter/services/TextInputAction-class.html#constants
+                textInputAction: TextInputAction.search,
+                decoration: InputDecoration(
+                    filled: true,
+                    prefixIcon: Icon(Icons.search),
+                    hintText: "Search for a place",
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(18)))),
+              ),
+            ),
+          ),
           BlocProvider(
               create: (context) => sl<VenuesBloc>(),
               child: Expanded(
