@@ -1,14 +1,14 @@
-import 'package:coding_challenge/features/venues/presentation/pages/search_page.dart';
+import 'package:coding_challenge/features/venues/presentation/pages/main_view.dart';
 import 'package:flutter/material.dart';
 
 class CustomRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case '/':
-        return pageRouteBuilder(SearchPage());
+        return pageRouteBuilder(MainView());
 
       default:
-        return pageRouteBuilder(SearchPage());
+        return pageRouteBuilder(MainView());
     }
   }
 }

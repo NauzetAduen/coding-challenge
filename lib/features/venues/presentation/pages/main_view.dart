@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../injection.dart';
 
-class SearchPage extends StatelessWidget {
+class MainView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
