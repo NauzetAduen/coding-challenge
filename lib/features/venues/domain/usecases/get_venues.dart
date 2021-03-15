@@ -20,7 +20,7 @@ class GetVenues implements UseCase<List<Venue>, QueryParams> {
 class QueryParams extends Equatable {
   final Map<String, dynamic> query;
 
-  const QueryParams(this.query);
+  const QueryParams({@required this.query});
 
   @override
   List<Object> get props => [query];
