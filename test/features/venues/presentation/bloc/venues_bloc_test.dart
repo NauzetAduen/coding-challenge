@@ -53,6 +53,8 @@ void main() {
       final expected = [
         LoadingVenuesState(),
         LoadedVenuesState(venuesList: mockVenueList),
+        //no longer emits initialState
+        //https://github.com/felangel/bloc/issues/1518
       ];
       expectLater(venuesBloc, emitsInOrder(expected));
     });
