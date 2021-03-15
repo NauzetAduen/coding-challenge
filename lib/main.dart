@@ -2,8 +2,12 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'injection.dart';
 
-void main() => runApp(CodingChallengeApp());
+void main() {
+  init();
+  runApp(CodingChallengeApp());
+}
 
 const appName = "Coding Challenge";
 
