@@ -15,22 +15,30 @@ class VenueModel extends Venue {
           category: category,
         );
 
-//TODO (control which fields can be null)
   factory VenueModel.fromJson(Map<String, dynamic> jsonMap) {
     final Location location = Location(
-      locationName: jsonMap['location']['address'] as String,
-      distance: jsonMap['location']['distance'] as int,
-      latitude: jsonMap['location']['lat'] as double,
-      longitude: jsonMap['location']['lng'] as double,
+      locationName: jsonMap['location']['address'] as String ?? "NoName",
+      distance: jsonMap['location']['distance'] as int ?? 10000,
+      latitude: jsonMap['location']['lat'] as double ?? 0,
+      longitude: jsonMap['location']['lng'] as double ?? 0,
     );
-    final Category category = Category(
-      name: jsonMap['categories'][0]['name'] as String,
-      photoUrl:
-          "${jsonMap['categories'][0]['icon']['prefix']}32${jsonMap['categories'][0]['icon']['suffix']}",
-    );
+    String photoURL = "";
+    String categoryName = "";
+    if ((jsonMap['categories'] as List<dynamic>).isNotEmpty) {
+      final String prefix =
+          jsonMap['categories'][0]['icon']['prefix'] as String ?? "";
+      final String suffix =
+          jsonMap['categories'][0]['icon']['suffix'] as String ?? "";
+      if (prefix.isNotEmpty && suffix.isNotEmpty) {
+        photoURL = "${prefix}32$suffix";
+      }
+      categoryName = jsonMap['categories'][0]['name'] as String ?? "NoCategory";
+    }
+
+    final Category category = Category(name: categoryName, photoUrl: photoURL);
     return VenueModel(
-        id: jsonMap['id'] as String,
-        name: jsonMap['name'] as String,
+        id: jsonMap['id'] as String ?? "",
+        name: jsonMap['name'] as String ?? "",
         location: location,
         category: category);
   }
