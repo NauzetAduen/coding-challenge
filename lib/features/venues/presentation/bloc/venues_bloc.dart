@@ -28,6 +28,8 @@ class VenuesBloc extends Bloc<VenuesEvent, VenuesState> {
             return ErrorVenuesState(message: failure.message);
           } else if (failure is ConnectionFailure) {
             return ErrorVenuesState(message: failure.message);
+          } else if (failure is PermissionFailure) {
+            return ErrorVenuesState(message: failure.message);
           }
           return const ErrorVenuesState(message: unknownError);
         },
