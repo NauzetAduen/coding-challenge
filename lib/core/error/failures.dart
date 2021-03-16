@@ -15,3 +15,10 @@ class ConnectionFailure extends Failure {
 
   String get message => "There is a problem with your connection.";
 }
+
+class PermissionFailure extends Failure {
+  @override
+  List<Object> get props => [];
+
+  String get message => "You don't have permissions for your location.";
+}
