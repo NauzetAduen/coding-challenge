@@ -11,6 +11,7 @@ import '../../../../fixtures/reader.dart';
 class MockDio extends Mock implements Dio {}
 
 void main() {
+  TestWidgetsFlutterBinding.ensureInitialized();
   VenuesDataSourceImpl venuesDataSourceImpl;
   MockDio mockDio;
 
@@ -24,8 +25,7 @@ void main() {
     when(mockDio.request(any)).thenAnswer((_) async => Response(data: {
           'response': {"venues": []}
         }, statusCode: 200));
-    final result = await venuesDataSourceImpl
-        .getVenues({"near": "Las Palmas", "limit": 3});
+    final result = await venuesDataSourceImpl.getVenues({"limit": 3});
     expect(result, isA<List<Venue>>());
     expect(result.isEmpty, true);
   });
