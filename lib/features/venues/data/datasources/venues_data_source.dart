@@ -48,7 +48,6 @@ class VenuesDataSourceImpl implements VenuesDataSource {
             response.data['response']['venues'] as List<dynamic>;
         for (final venueMap in result) {
           venuesList.add(VenueModel.fromJson(venueMap as Map<String, dynamic>));
-          print(venuesList.length);
         }
         // print(venuesList.length);
         return venuesList;

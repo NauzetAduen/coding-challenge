@@ -1,8 +1,7 @@
-import '../../domain/usecases/get_venues.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../injection.dart';
+import '../../domain/usecases/get_venues.dart';
 import '../bloc/venues_bloc.dart';
 
 class MainView extends StatelessWidget {
