@@ -29,7 +29,6 @@ class VenuesDataSourceImpl implements VenuesDataSource {
     }
 
     try {
-      //TODO check correct latlong param names
       final Position position = await Geolocator.getCurrentPosition();
       baseOptions.queryParameters.putIfAbsent(
           'll', () => "${position.latitude},${position.longitude}");
