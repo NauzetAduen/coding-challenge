@@ -20,15 +20,15 @@ class MainView extends StatelessWidget {
             Expanded(
               child: BlocBuilder<VenuesBloc, VenuesState>(
                 builder: (context, state) {
+                  //TODO add each state
                   if (state is VenuesInitialState) {
                     return const InitialMessage();
                   } else if (state is LoadingVenuesState) {
                     return const LoadingBox();
                   } else if (state is LoadedVenuesState) {
                     return VenuesListView(list: state.venuesList);
-                    // return const Center(child: Text("LOL"));
                   }
-                  return const Center(child: Text("ABC"));
+                  return const Center(child: Text("ERROR"));
                 },
               ),
             )
