@@ -8,16 +8,11 @@ class VenueModel extends Venue {
     @required String name,
     @required Location location,
     @required Category category,
-  }) : super(
-          id: id,
-          name: name,
-          location: location,
-          category: category,
-        );
+  }) : super(id: id, name: name, location: location, category: category);
 
   factory VenueModel.fromJson(Map<String, dynamic> jsonMap) {
     final Location location = Location(
-      locationName: jsonMap['location']['address'] as String ?? "NoName",
+      locationName: jsonMap['location']['address'] as String ?? "",
       distance: jsonMap['location']['distance'] as int ?? 10000,
       latitude: jsonMap['location']['lat'] as double ?? 0,
       longitude: jsonMap['location']['lng'] as double ?? 0,
@@ -32,7 +27,7 @@ class VenueModel extends Venue {
       if (prefix.isNotEmpty && suffix.isNotEmpty) {
         photoURL = "${prefix}32$suffix";
       }
-      categoryName = jsonMap['categories'][0]['name'] as String ?? "NoCategory";
+      categoryName = jsonMap['categories'][0]['name'] as String ?? "";
     }
 
     final Category category = Category(name: categoryName, photoUrl: photoURL);
