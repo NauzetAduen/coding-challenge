@@ -12,5 +12,5 @@ class InitialMessage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => const Center(child: Text(message));
-  //TODO theme
+  //TODO use theme
 }

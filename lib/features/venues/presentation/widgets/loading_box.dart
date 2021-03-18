@@ -16,7 +16,7 @@ class LoadingBox extends StatelessWidget {
         height: size,
         child: LoadingIndicator(
           indicatorType: Indicator.lineScaleParty,
-          //TODO color
+          //TODO use theme
           color: Colors.indigo,
         ),
       ));

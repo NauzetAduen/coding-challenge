@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 const double iconSize = 30;
 
+///listview for listtiles with each venue
 class VenuesListView extends StatelessWidget {
   final List<Venue> list;
 
