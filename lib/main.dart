@@ -24,6 +24,7 @@ class _CodingChallengeAppState extends State<CodingChallengeApp> {
   Widget build(BuildContext context) => BlocProvider(
       create: (context) => sl<VenuesBloc>(),
       child: MaterialApp(
+          debugShowCheckedModeBanner: false,
           title: appName,
           onGenerateRoute: CustomRouter.generateRoute,
           initialRoute: '/',
