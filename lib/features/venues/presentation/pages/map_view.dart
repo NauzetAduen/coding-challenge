@@ -14,18 +14,23 @@ class MapView extends StatefulWidget {
 
 class _MapViewState extends State<MapView> {
   GoogleMapController mapController;
+  Venue firstVenue;
+  Set<Marker> markersFromList = {};
 
   @override
-  Widget build(BuildContext context) {
-    final Venue firstVenue = widget.list.first;
-    final Set<Marker> markersFromList = {};
-
+  void initState() {
+    super.initState();
+    firstVenue = widget.list.first;
     for (final venue in widget.list) {
       markersFromList.add(Marker(
+          //TODO ADD COLOR, INFO, AND NAVIGATION TO DETAILS
           markerId: MarkerId(venue.id),
           position: LatLng(venue.location.latitude, venue.location.longitude)));
     }
+  }
 
+  @override
+  Widget build(BuildContext context) {
     final CameraPosition cameraPosition = CameraPosition(
         target:
             LatLng(firstVenue.location.latitude, firstVenue.location.longitude),

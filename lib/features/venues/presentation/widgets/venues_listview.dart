@@ -18,6 +18,7 @@ class VenuesListView extends StatelessWidget {
         //usually you get what it is from the name
         final Venue venue = list[index];
         return ListTile(
+          //TODO ADD FIXED WIDTH AND HEIGHT
           onTap: () {
             //TODO PASS ARGUMENT ID
             Navigator.pushNamed(context, "/detailed");
