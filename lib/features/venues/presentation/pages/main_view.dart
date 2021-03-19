@@ -14,6 +14,7 @@ class MainView extends StatelessWidget {
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
           title: const Text("fourSquare"),
+          centerTitle: true,
         ),
         body: Column(
           children: [
@@ -31,7 +32,7 @@ class MainView extends StatelessWidget {
                   } else if (state is EmptyVenuesState) {
                     //TODO IMPROVE EMPTY STATE
                     return const Center(
-                        child: Text("We couldn't find anything "));
+                        child: Text("We couldn't find anything."));
                   }
                   return const Center(child: Text("ERROR"));
                 },
