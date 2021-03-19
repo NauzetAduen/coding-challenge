@@ -33,7 +33,10 @@ class VenuesBloc extends Bloc<VenuesEvent, VenuesState> {
           }
           return const ErrorVenuesState(message: unknownError);
         },
-        (venuesList) => LoadedVenuesState(venuesList: venuesList),
+        (venuesList) {
+          if (venuesList.isEmpty) return EmptyVenuesState();
+          return LoadedVenuesState(venuesList: venuesList);
+        },
       );
     }
   }

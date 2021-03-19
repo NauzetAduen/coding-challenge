@@ -1,4 +1,4 @@
-import 'package:coding_challenge/features/venues/presentation/widgets/venues_listview.dart';
+import 'package:coding_challenge/features/venues/presentation/widgets/rotated_fab.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -6,6 +6,7 @@ import '../bloc/venues_bloc.dart';
 import '../widgets/initial_message.dart';
 import '../widgets/loading_box.dart';
 import '../widgets/search_textfield.dart';
+import '../widgets/venues_listview.dart';
 
 class MainView extends StatelessWidget {
   @override
@@ -27,6 +28,10 @@ class MainView extends StatelessWidget {
                     return const LoadingBox();
                   } else if (state is LoadedVenuesState) {
                     return VenuesListView(list: state.venuesList);
+                  } else if (state is EmptyVenuesState) {
+                    //TODO IMPROVE EMPTY STATE
+                    return const Center(
+                        child: Text("We couldn't find anything "));
                   }
                   return const Center(child: Text("ERROR"));
                 },
@@ -34,5 +39,7 @@ class MainView extends StatelessWidget {
             )
           ],
         ),
+        floatingActionButton: const RoatedFab(),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       );
 }

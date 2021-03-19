@@ -22,6 +22,11 @@ class LoadedVenuesState extends VenuesState {
   List<Object> get props => [venuesList];
 }
 
+class EmptyVenuesState extends VenuesState {
+  @override
+  List<Object> get props => [];
+}
+
 class ErrorVenuesState extends VenuesState {
   final String message;
 
