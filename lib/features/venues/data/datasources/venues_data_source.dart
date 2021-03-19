@@ -30,9 +30,22 @@ class VenuesDataSourceImpl implements VenuesDataSource {
 
     try {
       final Position position = await Geolocator.getCurrentPosition();
+      final BaseOptions baseOptions =
+          BaseOptions(method: 'GET', baseUrl: baseURL,
+              // connectTimeout: connectTimeout,
+              queryParameters: {
+            'client_id': clientID,
+            'client_secret': clientSecret,
+            'v': version,
+          });
       baseOptions.queryParameters.putIfAbsent(
-          'll', () => "${position.latitude},${position.longitude}");
-      baseOptions.queryParameters.putIfAbsent('limit', () => 15);
+        'll',
+        () => "${position.latitude},${position.longitude}",
+      );
+      baseOptions.queryParameters.putIfAbsent(
+        'limit',
+        () => 15,
+      );
 
       queryParams.forEach((key, value) {
         baseOptions.queryParameters.putIfAbsent(key, () => value);
@@ -40,7 +53,7 @@ class VenuesDataSourceImpl implements VenuesDataSource {
 
       dio.options = baseOptions;
       final Response response = await dio.request('/search');
-      // print(response.data['response']['venues']);
+
       if (response.statusCode == 200) {
         final List<Venue> venuesList = [];
         final List<dynamic> result =
@@ -48,7 +61,6 @@ class VenuesDataSourceImpl implements VenuesDataSource {
         for (final venueMap in result) {
           venuesList.add(VenueModel.fromJson(venueMap as Map<String, dynamic>));
         }
-        // print(venuesList.length);
         return venuesList;
       }
       return [];
