@@ -16,7 +16,8 @@ class RoatedFab extends StatelessWidget {
       builder: (context, state) {
         if (state is LoadedVenuesState) {
           return Transform.rotate(
-            angle: math.pi / 3,
+            //360 / 4 = 90º rotated
+            angle: math.pi / 4,
             child: FloatingActionButton(
               onPressed: () {
                 Navigator.pushNamed(
