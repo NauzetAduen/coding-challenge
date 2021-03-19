@@ -26,8 +26,16 @@ class _MapViewState extends State<MapView> {
           //TODO ADD COLOR, INFO, AND NAVIGATION TO DETAILS
           markerId: MarkerId(venue.id),
           position: LatLng(venue.location.latitude, venue.location.longitude),
-          icon: BitmapDescriptor.defaultMarkerWithHue(
-              BitmapDescriptor.hueYellow)));
+          icon:
+              BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueYellow),
+          //TODO color red for favorites?
+          infoWindow: InfoWindow(
+              title: venue.name,
+              snippet: venue.location.locationName,
+              onTap: () {
+                //TODO pushNamed to Detailed
+                print(venue.name);
+              })));
     }
   }
 
@@ -44,18 +52,19 @@ class _MapViewState extends State<MapView> {
         elevation: 0,
       ),
       body: GoogleMap(
-          compassEnabled: false,
-          myLocationButtonEnabled: false,
-          initialCameraPosition: cameraPosition,
-          markers: markersFromList,
-          onMapCreated: (GoogleMapController controller) async {
-            mapController = controller;
+        compassEnabled: false,
+        myLocationButtonEnabled: false,
+        initialCameraPosition: cameraPosition,
+        markers: markersFromList,
+        onMapCreated: (GoogleMapController controller) async {
+          mapController = controller;
 
-            //https://flutter.dev/docs/development/ui/assets-and-images
-            //TODO use theme colors
-            mapController.setMapStyle(
-                await rootBundle.loadString("assets/map/config.json"));
-          }),
+          //https://flutter.dev/docs/development/ui/assets-and-images
+          //TODO use theme colors
+          mapController.setMapStyle(
+              await rootBundle.loadString("assets/map/config.json"));
+        },
+      ),
     );
   }
 }
