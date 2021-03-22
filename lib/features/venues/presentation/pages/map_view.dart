@@ -16,6 +16,7 @@ class _MapViewState extends State<MapView> {
   GoogleMapController mapController;
   Venue firstVenue;
   Set<Marker> markersFromList = {};
+  CameraPosition cameraPosition;
 
   @override
   void initState() {
@@ -23,7 +24,6 @@ class _MapViewState extends State<MapView> {
     firstVenue = widget.list.first;
     for (final venue in widget.list) {
       markersFromList.add(Marker(
-          //TODO ADD COLOR, INFO, AND NAVIGATION TO DETAILS
           markerId: MarkerId(venue.id),
           position: LatLng(venue.location.latitude, venue.location.longitude),
           icon:
@@ -33,38 +33,36 @@ class _MapViewState extends State<MapView> {
               title: venue.name,
               snippet: venue.location.locationName,
               onTap: () {
-                //TODO pushNamed to Detailed
-                print(venue.name);
+                Navigator.pushNamed(context, "/detailed", arguments: venue);
               })));
+
+      cameraPosition = CameraPosition(
+          target: LatLng(
+              firstVenue.location.latitude, firstVenue.location.longitude),
+          zoom: 14);
     }
   }
 
   @override
-  Widget build(BuildContext context) {
-    final CameraPosition cameraPosition = CameraPosition(
-        target:
-            LatLng(firstVenue.location.latitude, firstVenue.location.longitude),
-        zoom: 14);
-    return Scaffold(
-      extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-      ),
-      body: GoogleMap(
-        compassEnabled: false,
-        myLocationButtonEnabled: false,
-        initialCameraPosition: cameraPosition,
-        markers: markersFromList,
-        onMapCreated: (GoogleMapController controller) async {
-          mapController = controller;
+  Widget build(BuildContext context) => Scaffold(
+        extendBodyBehindAppBar: true,
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+        ),
+        body: GoogleMap(
+          compassEnabled: false,
+          myLocationButtonEnabled: false,
+          initialCameraPosition: cameraPosition,
+          markers: markersFromList,
+          onMapCreated: (GoogleMapController controller) async {
+            mapController = controller;
 
-          //https://flutter.dev/docs/development/ui/assets-and-images
-          //TODO use theme colors
-          mapController.setMapStyle(
-              await rootBundle.loadString("assets/map/config.json"));
-        },
-      ),
-    );
-  }
+            //https://flutter.dev/docs/development/ui/assets-and-images
+            //TODO use theme colors
+            mapController.setMapStyle(
+                await rootBundle.loadString("assets/map/config.json"));
+          },
+        ),
+      );
 }
