@@ -1,7 +1,11 @@
 import 'package:coding_challenge/features/venues/domain/entities/venue.dart';
+import 'package:coding_challenge/features/venues/domain/entities/venue_details.dart';
+import 'package:coding_challenge/features/venues/presentation/bloc/details_bloc.dart';
 import 'package:coding_challenge/features/venues/presentation/widgets/custom_hero.dart';
+import 'package:coding_challenge/features/venues/presentation/widgets/loading_box.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class DetailedVenueView extends StatefulWidget {
@@ -18,6 +22,7 @@ class _DetailedVenueViewState extends State<DetailedVenueView> {
   Marker marker;
   GoogleMapController mapController;
   double iconSize = 30;
+  VenueDetails venueDetails;
 
   @override
   void initState() {
@@ -33,6 +38,9 @@ class _DetailedVenueViewState extends State<DetailedVenueView> {
           widget.venue.location.latitude, widget.venue.location.longitude),
       icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueYellow),
     );
+
+    BlocProvider.of<DetailsBloc>(context)
+        .add(GetDetailsEvent(venueID: widget.venue.id));
   }
 
   @override
@@ -135,6 +143,16 @@ class _DetailedVenueViewState extends State<DetailedVenueView> {
                   ],
                 ),
               ),
+              BlocBuilder<DetailsBloc, DetailsState>(builder: (context, state) {
+                if (state is DetailsInitialState) {
+                  return Container();
+                } else if (state is LoadingDetailsState) {
+                  return const LoadingBox();
+                } else if (state is LoadedDetailsState) {
+                  return Text(state.venueDetails.description);
+                }
+                return const Text("AAA");
+              }),
             ],
           ),
         ));

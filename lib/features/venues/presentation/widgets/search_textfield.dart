@@ -38,6 +38,7 @@ class SearchTextField extends StatelessWidget {
             final FocusScopeNode currentFocus = FocusScope.of(context);
 
             if (!currentFocus.hasPrimaryFocus) currentFocus.unfocus();
+
             BlocProvider.of<VenuesBloc>(context)
                 .add(GetVenuesEvent(queryParams: {'query': controller.text}));
             controller.clear();
@@ -47,4 +48,3 @@ class SearchTextField extends StatelessWidget {
     );
   }
 }
-//TODO TextEditControlled to add query to queryParams
