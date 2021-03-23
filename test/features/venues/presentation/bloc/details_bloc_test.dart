@@ -19,9 +19,6 @@ void main() {
 
   test('initial state should be VenuesInitialState', () async {
     expect(detailsBloc.state, DetailsInitialState());
-
-    //this is correct because we pass VenuesInitialState on
-    //super after calling VenuesBloc constructor
   });
 
   group('getDetails', () {
