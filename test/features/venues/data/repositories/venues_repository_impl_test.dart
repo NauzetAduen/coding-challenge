@@ -4,6 +4,7 @@ import 'package:coding_challenge/core/error/exceptions.dart';
 import 'package:coding_challenge/core/error/failures.dart';
 import 'package:coding_challenge/core/network/network_info.dart';
 import 'package:coding_challenge/features/venues/data/datasources/venues_data_source.dart';
+import 'package:coding_challenge/features/venues/data/models/venue_details_model.dart';
 import 'package:coding_challenge/features/venues/data/models/venue_model.dart';
 import 'package:coding_challenge/features/venues/data/repositories/venues_repository_impl.dart';
 import 'package:coding_challenge/features/venues/domain/entities/venue.dart';
@@ -63,19 +64,63 @@ void main() {
 
         expect(result, Left(ServerFailure()));
       });
+      group('is not connected', () {
+        test('should return ConnectionFailure when is not connected to inet',
+            () async {
+          when(mockNetworkInfo.isConnected)
+              .thenAnswer((_) async => Future.value(false));
+          final result = await venuesRepositoryImpl.getVenues({});
+
+          expect(result, Left(ConnectionFailure()));
+        });
+      });
     });
   });
-  group('is not connected', () {
-    setUp(() {
-      //we return false for all the tests in this group
-      when(mockNetworkInfo.isConnected).thenAnswer((_) => Future.value(false));
+  group('getDetails', () {
+    final Map<String, dynamic> jsonMap =
+        json.decode(fixture('details_response.json')) as Map<String, dynamic>;
+
+    final venuesDetails =
+        VenueDetailsModel.fromJson(jsonMap['response'] as Map<String, dynamic>);
+
+    group('is connected', () {
+      setUp(() {
+        //we return true for all the tests in this group
+        when(mockNetworkInfo.isConnected).thenAnswer((_) => Future.value(true));
+      });
+
+      test('', () async {
+        //
+      });
+      test('should check if there is internet conection', () async {
+        await venuesRepositoryImpl.getDetails("");
+
+        verify(mockNetworkInfo.isConnected); //is connected is called
+      });
+      test('should return a venuesDetail when calling datasource', () async {
+        when(mockVenuesDataSource.getDetails(any))
+            .thenAnswer((_) async => venuesDetails);
+
+        final result = await venuesRepositoryImpl.getDetails("");
+        expect(result, Right(venuesDetails));
+      });
+
+      test('should return ServerFailure when call ins unsuccessful', () async {
+        when(mockVenuesDataSource.getDetails(any)).thenThrow(ServerException());
+        final result = await venuesRepositoryImpl.getDetails("");
+
+        expect(result, Left(ServerFailure()));
+      });
     });
+    group('is not connected', () {
+      test('should return ConnectionFailure when is not connected to inet',
+          () async {
+        when(mockNetworkInfo.isConnected)
+            .thenAnswer((_) async => Future.value(false));
+        final result = await venuesRepositoryImpl.getDetails("");
 
-    test('should return ConnectionFailure when is not connected to inet',
-        () async {
-      final result = await venuesRepositoryImpl.getVenues({});
-
-      expect(result, Left(ConnectionFailure()));
+        expect(result, Left(ConnectionFailure()));
+      });
     });
   });
 }
