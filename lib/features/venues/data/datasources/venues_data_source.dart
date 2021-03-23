@@ -1,6 +1,8 @@
 import 'package:coding_challenge/core/error/exceptions.dart';
+import 'package:coding_challenge/features/venues/data/models/venue_details_model.dart';
 import 'package:coding_challenge/features/venues/data/models/venue_model.dart';
 import 'package:coding_challenge/features/venues/domain/entities/venue.dart';
+import 'package:coding_challenge/features/venues/domain/entities/venue_details.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:geolocator/geolocator.dart';
@@ -8,6 +10,7 @@ import 'venues_data_source_config.dart';
 
 abstract class VenuesDataSource {
   Future<List<Venue>> getVenues(Map<String, dynamic> queryParams);
+  Future<VenueDetails> getDetails(String venueID);
 }
 
 class VenuesDataSourceImpl implements VenuesDataSource {
@@ -64,6 +67,30 @@ class VenuesDataSourceImpl implements VenuesDataSource {
         return venuesList;
       }
       return [];
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<VenueDetails> getDetails(String venueID) async {
+    try {
+      final BaseOptions baseOptions =
+          BaseOptions(method: 'GET', baseUrl: baseURL,
+              // connectTimeout: connectTimeout,
+              queryParameters: {
+            'client_id': clientID,
+            'client_secret': clientSecret,
+            'v': version,
+          });
+
+      dio.options = baseOptions;
+      final Response response = await dio.request('/$venueID');
+      if (response.statusCode == 200) {
+        return VenueDetailsModel.fromJson(
+            response.data['response'] as Map<String, dynamic>);
+      }
+      return null;
     } catch (e) {
       rethrow;
     }
