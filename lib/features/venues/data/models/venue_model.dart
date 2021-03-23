@@ -12,7 +12,7 @@ class VenueModel extends Venue {
 
   factory VenueModel.fromJson(Map<String, dynamic> jsonMap) {
     final Location location = Location(
-      locationName: jsonMap['location']['address'] as String ?? "",
+      locationName: jsonMap['location']['address'] as String ?? "w/o address",
       distance: jsonMap['location']['distance'] as int ?? 10000,
       latitude: jsonMap['location']['lat'] as double ?? 0,
       longitude: jsonMap['location']['lng'] as double ?? 0,

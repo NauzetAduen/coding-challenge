@@ -25,9 +25,9 @@ class VenueDetailsModel extends VenueDetails {
     );
 
     return VenueDetailsModel(
-        description: json['venue']['description'] as String ?? "",
-        url: json['venue']['url'] as String ?? "",
-        summary: json['venue']['hereNow']['summary'] as String ?? "",
+        description: json['venue']['description'] as String ?? "No description",
+        url: json['venue']['url'] as String ?? "No url",
+        summary: json['venue']['hereNow']['summary'] as String ?? "No summary",
         verified: json['venue']['verified'] as bool ?? false,
         contact: contact);
   }
