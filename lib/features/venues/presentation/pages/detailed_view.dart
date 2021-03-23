@@ -1,6 +1,7 @@
 import 'package:coding_challenge/features/venues/domain/entities/venue.dart';
 import 'package:coding_challenge/features/venues/domain/entities/venue_details.dart';
 import 'package:coding_challenge/features/venues/presentation/bloc/details_bloc.dart';
+import 'package:coding_challenge/features/venues/presentation/widgets/check_icon.dart';
 import 'package:coding_challenge/features/venues/presentation/widgets/custom_hero.dart';
 import 'package:coding_challenge/features/venues/presentation/widgets/loading_box.dart';
 import 'package:flutter/material.dart';
@@ -111,6 +112,13 @@ class _DetailedVenueViewState extends State<DetailedVenueView> {
                             style: const TextStyle(fontSize: 22),
                           )),
                     ),
+                    BlocBuilder<DetailsBloc, DetailsState>(
+                        builder: (context, state) {
+                      if (state is LoadedDetailsState) {
+                        return CheckIcon(verified: state.venueDetails.verified);
+                      }
+                      return const CheckIcon(verified: false);
+                    }),
                   ],
                 ),
               ),
@@ -149,7 +157,15 @@ class _DetailedVenueViewState extends State<DetailedVenueView> {
                 } else if (state is LoadingDetailsState) {
                   return const LoadingBox();
                 } else if (state is LoadedDetailsState) {
-                  return Text(state.venueDetails.description);
+                  return Column(
+                    children: [
+                      Text(state.venueDetails.description),
+                      Text(state.venueDetails.summary),
+                      Text(state.venueDetails.url),
+                      Text(state.venueDetails.description),
+                      Text(state.venueDetails.description),
+                    ],
+                  );
                 }
                 return const Text("AAA");
               }),
