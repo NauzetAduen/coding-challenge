@@ -113,12 +113,14 @@ class _DetailedVenueViewState extends State<DetailedVenueView> {
                   children: [
                     Flexible(
                       flex: 3,
-                      child: CustomHero(
-                          tag: "${widget.venue.id}location",
-                          child: Text(
-                            widget.venue.location.locationName,
-                            style: const TextStyle(fontSize: 22),
-                          )),
+                      child: Center(
+                        child: CustomHero(
+                            tag: "${widget.venue.id}location",
+                            child: Text(
+                              widget.venue.location.locationName,
+                              style: const TextStyle(fontSize: 22),
+                            )),
+                      ),
                     ),
                     Flexible(
                       child: Center(
