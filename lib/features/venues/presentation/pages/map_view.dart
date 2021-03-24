@@ -62,7 +62,6 @@ class _MapViewState extends State<MapView> {
             mapController = controller;
 
             //https://flutter.dev/docs/development/ui/assets-and-images
-            //TODO use theme colors
             mapController.setMapStyle(
                 await rootBundle.loadString("assets/map/config.json"));
           },

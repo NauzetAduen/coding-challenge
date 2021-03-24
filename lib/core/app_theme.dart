@@ -11,6 +11,7 @@ ThemeData themeData = ThemeData(
   primaryColor: Colors.black,
   accentColor: accentColor,
   dividerColor: grey,
+  cardColor: imperialRed,
   textTheme: GoogleFonts.montserratTextTheme(textTheme),
 );
 
@@ -45,4 +46,23 @@ const TextTheme textTheme = TextTheme(
     fontStyle: FontStyle.italic,
     fontSize: 14,
   ),
+  //ERROR message
+  caption: TextStyle(
+    fontSize: 18,
+    letterSpacing: 0,
+    wordSpacing: 2,
+  ),
+  //hint search box
+  subtitle1: TextStyle(
+    fontSize: 16,
+    wordSpacing: 2,
+    color: grey,
+  ),
+  // //textbox
+  // subtitle2: TextStyle(
+  //   fontSize: 24,
+  //   fontWeight: FontWeight.bold,
+  //   color: Colors.black,
+  //   letterSpacing: 5,
+  // ),
 );

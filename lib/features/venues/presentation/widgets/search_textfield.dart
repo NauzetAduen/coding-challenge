@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../bloc/venues_bloc.dart';
 
@@ -24,12 +25,19 @@ class SearchTextField extends StatelessWidget {
           //go vs search
           //https://api.flutter.dev/flutter/services/TextInputAction-class.html#constants
           textInputAction: TextInputAction.search,
-          decoration: const InputDecoration(
+          cursorColor: Theme.of(context).accentColor,
+          cursorWidth: 4,
+          decoration: InputDecoration(
               filled: true,
-              prefixIcon: Icon(Icons.search),
+              prefixIcon: Icon(
+                FontAwesomeIcons.searchLocation,
+                color: Theme.of(context).dividerColor,
+                size: 20,
+              ),
               isCollapsed: true,
               hintText: "Search for a place",
-              border: OutlineInputBorder(
+              hintStyle: Theme.of(context).textTheme.subtitle1,
+              border: const OutlineInputBorder(
                   borderRadius: BorderRadius.all(
                 Radius.circular(18),
               ))),

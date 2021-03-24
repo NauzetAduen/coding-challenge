@@ -23,7 +23,6 @@ class MainView extends StatelessWidget {
             Expanded(
               child: BlocBuilder<VenuesBloc, VenuesState>(
                 builder: (context, state) {
-                  //TODO add each state
                   if (state is VenuesInitialState) {
                     return const InitialMessage();
                   } else if (state is LoadingVenuesState) {
@@ -31,12 +30,19 @@ class MainView extends StatelessWidget {
                   } else if (state is LoadedVenuesState) {
                     return VenuesListView(list: state.venuesList);
                   } else if (state is EmptyVenuesState) {
-                    //TODO IMPROVE EMPTY STATE
-                    return const Center(
-                        child: Text("We couldn't find anything."));
+                    return Center(
+                        child: Text(
+                      "We couldn't find anything.\nTry again.",
+                      style: Theme.of(context).textTheme.caption,
+                      textAlign: TextAlign.center,
+                    ));
                   } else if (state is ErrorVenuesState) {
                     return Center(
-                      child: Text(state.message),
+                      child: Text(
+                        state.message,
+                        style: Theme.of(context).textTheme.caption,
+                        textAlign: TextAlign.center,
+                      ),
                     );
                   }
                   return const Center(child: Text("ERROR"));

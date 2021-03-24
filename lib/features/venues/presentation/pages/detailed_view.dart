@@ -73,7 +73,7 @@ class _DetailedVenueViewState extends State<DetailedVenueView> {
         body: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
           child: Column(
-            mainAxisSize: MainAxisSize.min,
+            // mainAxisSize: MainAxisSize.max,
             children: [
               SizedBox(
                 width: double.infinity,
@@ -87,7 +87,6 @@ class _DetailedVenueViewState extends State<DetailedVenueView> {
                     mapController = controller;
 
                     //https://flutter.dev/docs/development/ui/assets-and-images
-                    //TODO use theme colors
                     mapController.setMapStyle(
                         await rootBundle.loadString("assets/map/config.json"));
                   },
@@ -104,7 +103,6 @@ class _DetailedVenueViewState extends State<DetailedVenueView> {
                           tag: "${widget.venue.id}icon",
                           child: widget.venue.category.photoUrl.isNotEmpty
                               ? Container(
-                                  //TODO use theme
                                   color: Colors.black,
                                   width: iconSize,
                                   height: iconSize,
@@ -181,9 +179,19 @@ class _DetailedVenueViewState extends State<DetailedVenueView> {
                 } else if (state is LoadedDetailsState) {
                   return DetailsColumn(venueDetails: state.venueDetails);
                 } else if (state is ErrorDetailsState) {
-                  return Center(child: Text(state.message));
+                  return Center(
+                      child: Text(
+                    state.message,
+                    style: Theme.of(context).textTheme.caption,
+                    textAlign: TextAlign.center,
+                  ));
                 }
-                return const Text("Error");
+                return Center(
+                    child: Text(
+                  "Error",
+                  style: Theme.of(context).textTheme.caption,
+                  textAlign: TextAlign.center,
+                ));
               }),
             ],
           ),

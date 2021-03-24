@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:loading_indicator/loading_indicator.dart';
 
-const double size = 60.0;
+const double size = 30.0;
 
 /// loading widget for loadingStates
 class LoadingBox extends StatelessWidget {
@@ -16,8 +16,7 @@ class LoadingBox extends StatelessWidget {
         height: size,
         child: LoadingIndicator(
           indicatorType: Indicator.lineScaleParty,
-          //TODO use theme
-          color: Colors.indigo,
+          color: Theme.of(context).cardColor,
         ),
       ));
 }

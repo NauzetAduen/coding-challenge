@@ -11,6 +11,10 @@ class InitialMessage extends StatelessWidget {
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) => const Center(child: Text(message));
-  //TODO use theme
+  Widget build(BuildContext context) => Center(
+          child: Text(
+        message,
+        style: Theme.of(context).textTheme.caption,
+        textAlign: TextAlign.center,
+      ));
 }
