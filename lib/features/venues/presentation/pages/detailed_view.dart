@@ -1,3 +1,5 @@
+import 'package:coding_challenge/features/venues/presentation/bloc/favorite_bloc.dart';
+import 'package:coding_challenge/features/venues/presentation/widgets/favorite_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -66,11 +68,31 @@ class _DetailedVenueViewState extends State<DetailedVenueView> {
             Padding(
               padding: const EdgeInsets.only(right: 10),
               child: CustomHero(
-                  tag: "${widget.venue.id}like",
-                  child: const Icon(Icons.favorite, size: 30)),
+                tag: "${widget.venue.id}like",
+                child: BlocBuilder<FavoriteBloc, FavoriteState>(
+                    builder: (context, state) {
+                  if (state is LoadedFavoriteState) {
+                    return FavoriteButton(
+                      color: state.keys.contains(widget.venue.id)
+                          ? Colors.red
+                          : Colors.grey,
+                      venueID: widget.venue.id,
+                    );
+                  }
+                  return FavoriteButton(
+                    color: Colors.grey,
+                    venueID: widget.venue.id,
+                  );
+                }),
+              ),
             ),
           ],
         ),
+
+        /*
+
+
+        */
         body: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
           child: Column(
@@ -176,12 +198,15 @@ class _DetailedVenueViewState extends State<DetailedVenueView> {
                 if (state is DetailsInitialState) {
                   return Container();
                 } else if (state is LoadingDetailsState) {
-                  return const LoadingBox();
+                  return const Padding(
+                    padding: EdgeInsets.only(top: 60),
+                    child: LoadingBox(),
+                  );
                 } else if (state is LoadedDetailsState) {
                   return DetailsColumn(venueDetails: state.venueDetails);
                 } else if (state is ErrorDetailsState) {
                   return Padding(
-                    padding: const EdgeInsets.only(top: 20),
+                    padding: const EdgeInsets.only(top: 60),
                     child: TextError(data: state.message),
                   );
                 }
