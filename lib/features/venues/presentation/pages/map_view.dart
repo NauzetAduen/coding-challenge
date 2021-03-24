@@ -1,7 +1,8 @@
-import 'package:coding_challenge/features/venues/domain/entities/venue.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+
+import '../../domain/entities/venue.dart';
 
 class MapView extends StatefulWidget {
   final List<Venue> list;

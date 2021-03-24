@@ -1,10 +1,13 @@
 import 'dart:async';
+
 import 'package:bloc/bloc.dart';
-import 'package:coding_challenge/core/error/failures.dart';
-import 'package:coding_challenge/features/venues/domain/entities/venue.dart';
-import 'package:coding_challenge/features/venues/domain/usecases/get_venues.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
+
+import '../../../../core/error/failures.dart';
+import '../../domain/entities/venue.dart';
+import '../../domain/usecases/get_venues.dart';
+
 part 'venues_event.dart';
 part 'venues_state.dart';
 

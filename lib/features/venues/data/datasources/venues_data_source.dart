@@ -1,11 +1,12 @@
-import 'package:coding_challenge/core/error/exceptions.dart';
-import 'package:coding_challenge/features/venues/data/models/venue_details_model.dart';
-import 'package:coding_challenge/features/venues/data/models/venue_model.dart';
-import 'package:coding_challenge/features/venues/domain/entities/venue.dart';
-import 'package:coding_challenge/features/venues/domain/entities/venue_details.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:geolocator/geolocator.dart';
+
+import '../../../../core/error/exceptions.dart';
+import '../../domain/entities/venue.dart';
+import '../../domain/entities/venue_details.dart';
+import '../models/venue_details_model.dart';
+import '../models/venue_model.dart';
 import 'venues_data_source_config.dart';
 
 abstract class VenuesDataSource {
@@ -33,10 +34,11 @@ class VenuesDataSourceImpl implements VenuesDataSource {
 
     try {
       final Position position = await Geolocator.getCurrentPosition();
-      final BaseOptions baseOptions =
-          BaseOptions(method: 'GET', baseUrl: baseURL,
-              // connectTimeout: connectTimeout,
-              queryParameters: {
+      final BaseOptions baseOptions = BaseOptions(
+          method: 'GET',
+          baseUrl: baseURL,
+          connectTimeout: connectTimeout,
+          queryParameters: {
             'client_id': clientID,
             'client_secret': clientSecret,
             'v': version,
@@ -68,6 +70,7 @@ class VenuesDataSourceImpl implements VenuesDataSource {
       }
       return [];
     } catch (e) {
+      //rethrow dio errors
       rethrow;
     }
   }

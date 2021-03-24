@@ -1,6 +1,6 @@
-import 'package:coding_challenge/features/venues/domain/entities/venue.dart';
 import 'package:flutter/material.dart';
 
+import '../../domain/entities/venue.dart';
 import 'custom_hero.dart';
 
 const double iconSize = 30;

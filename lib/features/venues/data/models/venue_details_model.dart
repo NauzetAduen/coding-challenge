@@ -1,5 +1,6 @@
-import 'package:coding_challenge/features/venues/domain/entities/venue_details.dart';
 import 'package:flutter/foundation.dart';
+
+import '../../domain/entities/venue_details.dart';
 
 class VenueDetailsModel extends VenueDetails {
   const VenueDetailsModel({
@@ -21,13 +22,15 @@ class VenueDetailsModel extends VenueDetails {
       twitter: json['venue']['contact']['twitter'] as String ?? "",
       instagram: json['venue']['contact']['instagram'] as String ?? "",
       facebook: json['venue']['contact']['facebook'] as String ?? "",
-      phone: json['venue']['contact']['formattedPhone'] as String ?? "",
+      phone: json['venue']['contact']['phone'] as String ?? "",
     );
 
     return VenueDetailsModel(
-        description: json['venue']['description'] as String ?? "No description",
-        url: json['venue']['url'] as String ?? "No url",
-        summary: json['venue']['hereNow']['summary'] as String ?? "No summary",
+        description: json['venue']['description'] as String ??
+            "No description provided.",
+        url: json['venue']['url'] as String ?? "",
+        summary: json['venue']['hereNow']['summary'] as String ??
+            "No summary provided.",
         verified: json['venue']['verified'] as bool ?? false,
         contact: contact);
   }
