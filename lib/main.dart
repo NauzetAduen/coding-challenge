@@ -9,6 +9,7 @@ import 'features/venues/presentation/bloc/favorite_bloc.dart';
 import 'features/venues/presentation/bloc/venues_bloc.dart';
 import 'injection.dart';
 
+// ignore: avoid_void_async
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await init();
@@ -35,7 +36,7 @@ class _CodingChallengeAppState extends State<CodingChallengeApp> {
             //TODO ..add()
             BlocProvider<FavoriteBloc>(
                 create: (context) => sl<FavoriteBloc>()
-                  ..add(const ChangeFavoriteStatusEvent(venueID: ""))),
+                  ..add(const ToogleFavoriteStatusEvent(venueID: ""))),
           ],
           child: MaterialApp(
               debugShowCheckedModeBanner: false,
