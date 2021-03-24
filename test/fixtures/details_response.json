@@ -5,7 +5,7 @@
     "response": {
         "venue": {
             "contact": {
-                "formattedPhone": "1234",
+                "phone": "1234",
                 "twitter": "tw",
                 "facebook": "fb",
                 "instagram": "insta"
