@@ -1,13 +1,16 @@
-import 'package:coding_challenge/features/venues/domain/entities/venue.dart';
-import 'package:coding_challenge/features/venues/domain/entities/venue_details.dart';
-import 'package:coding_challenge/features/venues/presentation/bloc/details_bloc.dart';
-import 'package:coding_challenge/features/venues/presentation/widgets/check_icon.dart';
-import 'package:coding_challenge/features/venues/presentation/widgets/custom_hero.dart';
-import 'package:coding_challenge/features/venues/presentation/widgets/loading_box.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+
+import '../../domain/entities/venue.dart';
+import '../../domain/entities/venue_details.dart';
+import '../bloc/details_bloc.dart';
+import '../widgets/check_icon.dart';
+import '../widgets/custom_hero.dart';
+import '../widgets/details_column.dart';
+import '../widgets/fixed_box.dart';
+import '../widgets/loading_box.dart';
 
 class DetailedVenueView extends StatefulWidget {
   final Venue venue;
@@ -63,12 +66,13 @@ class _DetailedVenueViewState extends State<DetailedVenueView> {
           ],
         ),
         body: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               SizedBox(
                 width: double.infinity,
-                height: 250,
+                height: 350,
                 child: GoogleMap(
                   initialCameraPosition: cameraPosition,
                   compassEnabled: false,
@@ -87,68 +91,80 @@ class _DetailedVenueViewState extends State<DetailedVenueView> {
               Padding(
                 padding:
                     const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    CustomHero(
-                        tag: "${widget.venue.id}icon",
-                        child: widget.venue.category.photoUrl.isNotEmpty
-                            ? Container(
-                                //TODO use theme
-                                color: Colors.black,
-                                width: iconSize,
-                                height: iconSize,
-                                child: Center(
-                                    child: Image.network(
-                                        widget.venue.category.photoUrl)))
-                            : SizedBox(width: iconSize, height: iconSize)),
-                    Expanded(
-                      child: CustomHero(
-                          tag: "${widget.venue.id}name",
-                          child: Text(
-                            widget.venue.name,
-                            textAlign: TextAlign.center,
-                            overflow: TextOverflow.ellipsis,
-                            style: const TextStyle(fontSize: 22),
-                          )),
-                    ),
-                    BlocBuilder<DetailsBloc, DetailsState>(
-                        builder: (context, state) {
-                      if (state is LoadedDetailsState) {
-                        return CheckIcon(verified: state.venueDetails.verified);
-                      }
-                      return const CheckIcon(verified: false);
-                    }),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 12),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Flexible(
-                      flex: 3,
-                      child: Center(
+                child: FixedBox(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      CustomHero(
+                          tag: "${widget.venue.id}icon",
+                          child: widget.venue.category.photoUrl.isNotEmpty
+                              ? Container(
+                                  //TODO use theme
+                                  color: Colors.black,
+                                  width: iconSize,
+                                  height: iconSize,
+                                  child: Center(
+                                      child: Image.network(
+                                          widget.venue.category.photoUrl)))
+                              : SizedBox(width: iconSize, height: iconSize)),
+                      Expanded(
                         child: CustomHero(
-                            tag: "${widget.venue.id}location",
+                            tag: "${widget.venue.id}name",
                             child: Text(
-                              widget.venue.location.locationName,
+                              widget.venue.name,
+                              textAlign: TextAlign.center,
+                              overflow: TextOverflow.ellipsis,
                               style: const TextStyle(fontSize: 22),
                             )),
                       ),
-                    ),
-                    Flexible(
-                      child: Center(
-                        child: CustomHero(
-                            tag: "${widget.venue.id}distance",
-                            child: Text(
-                              "${widget.venue.location.distance.toString()}m",
-                              style: const TextStyle(fontSize: 14),
-                            )),
+                      BlocBuilder<DetailsBloc, DetailsState>(
+                          builder: (context, state) {
+                        if (state is LoadedDetailsState) {
+                          return CheckIcon(
+                            verified: state.venueDetails.verified,
+                          );
+                        }
+                        return const CheckIcon(verified: false);
+                      }),
+                    ],
+                  ),
+                ),
+              ),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+                child: FixedBox(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Flexible(
+                        flex: 3,
+                        child: Center(
+                          child: CustomHero(
+                              tag: "${widget.venue.id}location",
+                              child: Text(
+                                widget.venue.location.locationName,
+                                style: const TextStyle(fontSize: 14),
+                              )),
+                        ),
                       ),
-                    ),
-                  ],
+                      const VerticalDivider(
+                        thickness: 2,
+                        endIndent: 15,
+                        indent: 15,
+                      ),
+                      Flexible(
+                        child: Center(
+                          child: CustomHero(
+                              tag: "${widget.venue.id}distance",
+                              child: Text(
+                                "${widget.venue.location.distance.toString()}m",
+                                style: const TextStyle(fontSize: 14),
+                              )),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
               BlocBuilder<DetailsBloc, DetailsState>(builder: (context, state) {
@@ -157,17 +173,11 @@ class _DetailedVenueViewState extends State<DetailedVenueView> {
                 } else if (state is LoadingDetailsState) {
                   return const LoadingBox();
                 } else if (state is LoadedDetailsState) {
-                  return Column(
-                    children: [
-                      Text(state.venueDetails.description),
-                      Text(state.venueDetails.summary),
-                      Text(state.venueDetails.url),
-                      Text(state.venueDetails.description),
-                      Text(state.venueDetails.description),
-                    ],
-                  );
+                  return DetailsColumn(venueDetails: state.venueDetails);
+                } else if (state is ErrorDetailsState) {
+                  return Center(child: Text(state.message));
                 }
-                return const Text("AAA");
+                return const Text("Error");
               }),
             ],
           ),
