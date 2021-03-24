@@ -1,10 +1,10 @@
-import 'package:coding_challenge/features/venues/presentation/widgets/rotated_fab.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../bloc/venues_bloc.dart';
 import '../widgets/initial_message.dart';
 import '../widgets/loading_box.dart';
+import '../widgets/rotated_fab.dart';
 import '../widgets/search_textfield.dart';
 import '../widgets/venues_listview.dart';
 
@@ -33,6 +33,10 @@ class MainView extends StatelessWidget {
                     //TODO IMPROVE EMPTY STATE
                     return const Center(
                         child: Text("We couldn't find anything."));
+                  } else if (state is ErrorVenuesState) {
+                    return Center(
+                      child: Text(state.message),
+                    );
                   }
                   return const Center(child: Text("ERROR"));
                 },

@@ -1,12 +1,14 @@
-import 'package:coding_challenge/core/error/exceptions.dart';
-import 'package:coding_challenge/core/network/network_info.dart';
-import 'package:coding_challenge/features/venues/data/datasources/venues_data_source.dart';
-import 'package:coding_challenge/features/venues/domain/entities/venue.dart';
-import 'package:coding_challenge/core/error/failures.dart';
-import 'package:coding_challenge/features/venues/domain/entities/venue_details.dart';
-import 'package:coding_challenge/features/venues/domain/repositories/venues_repository.dart';
 import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
+
+import '../../../../core/error/exceptions.dart';
+import '../../../../core/error/failures.dart';
+import '../../../../core/network/network_info.dart';
+import '../../domain/entities/venue.dart';
+import '../../domain/entities/venue_details.dart';
+import '../../domain/repositories/venues_repository.dart';
+import '../datasources/venues_data_source.dart';
 
 class VenuesRepositoryImpl implements VenuesRepository {
   final VenuesDataSource venuesDataSource;
@@ -25,6 +27,10 @@ class VenuesRepositoryImpl implements VenuesRepository {
         return Right(venues);
       } on ServerException {
         return Left(ServerFailure());
+      } on PermissionException {
+        return Left(PermissionFailure());
+      } on DioError {
+        return Left(ConnectionFailure());
       }
     }
     return Left(ConnectionFailure());
@@ -39,6 +45,7 @@ class VenuesRepositoryImpl implements VenuesRepository {
       } on ServerException {
         return Left(ServerFailure());
       }
+      //we don't need On PermissionException here
     }
     return Left(ConnectionFailure());
   }
