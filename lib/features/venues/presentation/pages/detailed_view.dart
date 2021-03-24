@@ -11,6 +11,7 @@ import '../widgets/custom_hero.dart';
 import '../widgets/details_column.dart';
 import '../widgets/fixed_box.dart';
 import '../widgets/loading_box.dart';
+import '../widgets/text_error.dart';
 
 class DetailedVenueView extends StatefulWidget {
   final Venue venue;
@@ -179,19 +180,12 @@ class _DetailedVenueViewState extends State<DetailedVenueView> {
                 } else if (state is LoadedDetailsState) {
                   return DetailsColumn(venueDetails: state.venueDetails);
                 } else if (state is ErrorDetailsState) {
-                  return Center(
-                      child: Text(
-                    state.message,
-                    style: Theme.of(context).textTheme.caption,
-                    textAlign: TextAlign.center,
-                  ));
+                  return Padding(
+                    padding: const EdgeInsets.only(top: 20),
+                    child: TextError(data: state.message),
+                  );
                 }
-                return Center(
-                    child: Text(
-                  "Error",
-                  style: Theme.of(context).textTheme.caption,
-                  textAlign: TextAlign.center,
-                ));
+                return const TextError(data: "Error");
               }),
             ],
           ),

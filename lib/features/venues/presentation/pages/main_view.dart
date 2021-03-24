@@ -6,6 +6,7 @@ import '../widgets/initial_message.dart';
 import '../widgets/loading_box.dart';
 import '../widgets/rotated_fab.dart';
 import '../widgets/search_textfield.dart';
+import '../widgets/text_error.dart';
 import '../widgets/venues_listview.dart';
 
 class MainView extends StatelessWidget {
@@ -37,15 +38,9 @@ class MainView extends StatelessWidget {
                       textAlign: TextAlign.center,
                     ));
                   } else if (state is ErrorVenuesState) {
-                    return Center(
-                      child: Text(
-                        state.message,
-                        style: Theme.of(context).textTheme.caption,
-                        textAlign: TextAlign.center,
-                      ),
-                    );
+                    return TextError(data: state.message);
                   }
-                  return const Center(child: Text("ERROR"));
+                  return const TextError(data: "Error.");
                 },
               ),
             )
