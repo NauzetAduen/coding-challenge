@@ -18,7 +18,7 @@ class FavoriteButton extends StatelessWidget {
         icon: Icon(Icons.favorite, color: color),
         onPressed: () {
           BlocProvider.of<FavoriteBloc>(context)
-              .add(ChangeFavoriteStatusEvent(venueID: venueID));
+              .add(ToogleFavoriteStatusEvent(venueID: venueID));
         },
       );
 }

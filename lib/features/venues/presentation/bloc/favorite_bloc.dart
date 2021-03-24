@@ -14,7 +14,7 @@ class FavoriteBloc extends Bloc<FavoriteEvent, FavoriteState> {
 
   @override
   Stream<FavoriteState> mapEventToState(FavoriteEvent event) async* {
-    if (event is ChangeFavoriteStatusEvent) {
+    if (event is ToogleFavoriteStatusEvent) {
       final result = toogleFavoriteStatus(venueID: event.venueID);
 
       yield LoadedFavoriteState(keys: result);

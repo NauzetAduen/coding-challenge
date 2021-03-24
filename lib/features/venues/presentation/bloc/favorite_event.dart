@@ -4,10 +4,10 @@ abstract class FavoriteEvent extends Equatable {
   const FavoriteEvent();
 }
 
-class ChangeFavoriteStatusEvent extends FavoriteEvent {
+class ToogleFavoriteStatusEvent extends FavoriteEvent {
   final String venueID;
 
-  const ChangeFavoriteStatusEvent({@required this.venueID});
+  const ToogleFavoriteStatusEvent({@required this.venueID});
   @override
   List<Object> get props => [];
 }
