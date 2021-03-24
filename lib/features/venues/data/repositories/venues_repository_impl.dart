@@ -44,8 +44,9 @@ class VenuesRepositoryImpl implements VenuesRepository {
         return Right(details);
       } on ServerException {
         return Left(ServerFailure());
+      } on DioError {
+        return Left(ServerFailure());
       }
-      //we don't need On PermissionException here
     }
     return Left(ConnectionFailure());
   }
