@@ -1,15 +1,17 @@
+import 'package:coding_challenge/features/venues/presentation/bloc/favorite_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'core/app_theme.dart';
 import 'core/router.dart';
 import 'features/venues/presentation/bloc/details_bloc.dart';
+import 'features/venues/presentation/bloc/favorite_bloc.dart';
 import 'features/venues/presentation/bloc/venues_bloc.dart';
 import 'injection.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  init();
+  await init();
   runApp(CodingChallengeApp());
 }
 
@@ -30,6 +32,10 @@ class _CodingChallengeAppState extends State<CodingChallengeApp> {
             BlocProvider<DetailsBloc>(
               create: (context) => sl<DetailsBloc>(),
             ),
+            //TODO ..add()
+            BlocProvider<FavoriteBloc>(
+                create: (context) => sl<FavoriteBloc>()
+                  ..add(const ChangeFavoriteStatusEvent(venueID: ""))),
           ],
           child: MaterialApp(
               debugShowCheckedModeBanner: false,
