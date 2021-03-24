@@ -13,7 +13,8 @@ class MainView extends StatelessWidget {
   Widget build(BuildContext context) => Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
-          title: const Text("fourSquare"),
+          title:
+              Text("fourSquare", style: Theme.of(context).textTheme.headline1),
           centerTitle: true,
         ),
         body: Column(

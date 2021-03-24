@@ -54,7 +54,10 @@ class _DetailedVenueViewState extends State<DetailedVenueView> {
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0,
-          title: Text(widget.venue.name),
+          title: Text(
+            widget.venue.name,
+            style: Theme.of(context).textTheme.headline1,
+          ),
           centerTitle: true,
           actions: [
             Padding(
@@ -114,7 +117,7 @@ class _DetailedVenueViewState extends State<DetailedVenueView> {
                               widget.venue.name,
                               textAlign: TextAlign.center,
                               overflow: TextOverflow.ellipsis,
-                              style: const TextStyle(fontSize: 22),
+                              style: Theme.of(context).textTheme.headline2,
                             )),
                       ),
                       BlocBuilder<DetailsBloc, DetailsState>(
@@ -144,11 +147,12 @@ class _DetailedVenueViewState extends State<DetailedVenueView> {
                               tag: "${widget.venue.id}location",
                               child: Text(
                                 widget.venue.location.locationName,
-                                style: const TextStyle(fontSize: 14),
+                                style: Theme.of(context).textTheme.bodyText2,
                               )),
                         ),
                       ),
-                      const VerticalDivider(
+                      VerticalDivider(
+                        color: Theme.of(context).dividerColor,
                         thickness: 2,
                         endIndent: 15,
                         indent: 15,
@@ -159,7 +163,7 @@ class _DetailedVenueViewState extends State<DetailedVenueView> {
                               tag: "${widget.venue.id}distance",
                               child: Text(
                                 "${widget.venue.location.distance.toString()}m",
-                                style: const TextStyle(fontSize: 14),
+                                style: Theme.of(context).textTheme.bodyText2,
                               )),
                         ),
                       ),

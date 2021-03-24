@@ -13,7 +13,13 @@ class Summary extends StatelessWidget {
           children: [
             const FaIcon(FontAwesomeIcons.userFriends),
             const SizedBox(width: 16),
-            Text(summary),
+            Text(
+              summary,
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyText2
+                  .copyWith(fontStyle: FontStyle.normal),
+            ),
           ],
         ),
       );

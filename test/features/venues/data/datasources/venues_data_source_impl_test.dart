@@ -5,12 +5,19 @@ import 'package:coding_challenge/features/venues/domain/entities/venue.dart';
 import 'package:coding_challenge/features/venues/domain/entities/venue_details.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:mockito/mockito.dart';
 
 import '../../../../fixtures/reader.dart';
 
 class MockDio extends Mock implements Dio {}
 
+class MockGeolocator extends Mock implements Geolocator {}
+
+//TODO MOCK GEOLOCATOR
+//https://stackoverflow.com/questions/58238435/how-to-mock-a-static-method-in-flutter-with-mockito
+//You cannot mock static members. If you need to mock then, don't make them static – Rémi Rousselet
+//https://github.com/dart-lang/mockito/issues/214
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
   VenuesDataSourceImpl venuesDataSourceImpl;

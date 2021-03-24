@@ -11,6 +11,7 @@ class Description extends StatelessWidget {
       child: Text(
         description,
         textAlign: TextAlign.justify,
+        style: Theme.of(context).textTheme.bodyText1,
       ),
     );
   }

@@ -49,6 +49,8 @@ class _MapViewState extends State<MapView> {
         extendBodyBehindAppBar: true,
         appBar: AppBar(
           backgroundColor: Colors.transparent,
+          title: Text("Map", style: Theme.of(context).textTheme.headline1),
+          centerTitle: true,
           elevation: 0,
         ),
         body: GoogleMap(
