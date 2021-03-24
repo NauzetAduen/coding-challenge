@@ -7,11 +7,9 @@ class CheckIcon extends StatelessWidget {
 
   const CheckIcon({Key key, this.verified}) : super(key: key);
   @override
-  Widget build(BuildContext context) {
-    return verified
-        ? const Icon(Icons.check_circle_outline,
-            color: Colors.lightBlue, size: iconSize)
-        : const Icon(Icons.check_circle_outline,
-            color: Colors.grey, size: iconSize);
-  }
+  Widget build(BuildContext context) => verified
+      ? const Icon(Icons.check_circle_outline,
+          color: Colors.lightBlue, size: iconSize)
+      : const Icon(Icons.check_circle_outline,
+          color: Colors.grey, size: iconSize);
 }

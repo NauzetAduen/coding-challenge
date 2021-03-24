@@ -7,10 +7,8 @@ class FixedBox extends StatelessWidget {
 
   const FixedBox({Key key, @required this.child}) : super(key: key);
   @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: height,
-      child: child,
-    );
-  }
+  Widget build(BuildContext context) => SizedBox(
+        height: height,
+        child: child,
+      );
 }

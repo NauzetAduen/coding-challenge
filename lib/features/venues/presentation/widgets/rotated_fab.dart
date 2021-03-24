@@ -11,30 +11,28 @@ class RoatedFab extends StatelessWidget {
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<VenuesBloc, VenuesState>(
-      builder: (context, state) {
-        if (state is LoadedVenuesState) {
-          return Transform.rotate(
-            //360 / 4 = 90º rotated
-            angle: math.pi / 4,
-            child: FloatingActionButton(
-              onPressed: () {
-                Navigator.pushNamed(
-                  context,
-                  "/map",
-                  arguments: state.venuesList,
-                );
-              },
-              shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(12))),
-              child: const Icon(Icons.zoom_out_map_sharp),
-            ),
-          );
-        }
+  Widget build(BuildContext context) => BlocBuilder<VenuesBloc, VenuesState>(
+        builder: (context, state) {
+          if (state is LoadedVenuesState) {
+            return Transform.rotate(
+              //360 / 4 = 90º rotated
+              angle: math.pi / 4,
+              child: FloatingActionButton(
+                onPressed: () {
+                  Navigator.pushNamed(
+                    context,
+                    "/map",
+                    arguments: state.venuesList,
+                  );
+                },
+                shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(12))),
+                child: const Icon(Icons.zoom_out_map_sharp),
+              ),
+            );
+          }
 
-        return Container();
-      },
-    );
-  }
+          return Container();
+        },
+      );
 }

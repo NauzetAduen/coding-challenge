@@ -58,11 +58,4 @@ const TextTheme textTheme = TextTheme(
     wordSpacing: 2,
     color: grey,
   ),
-  // //textbox
-  // subtitle2: TextStyle(
-  //   fontSize: 24,
-  //   fontWeight: FontWeight.bold,
-  //   color: Colors.black,
-  //   letterSpacing: 5,
-  // ),
 );

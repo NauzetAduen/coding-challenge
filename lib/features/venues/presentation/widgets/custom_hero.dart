@@ -6,13 +6,11 @@ class CustomHero extends StatelessWidget {
 
   const CustomHero({@required this.tag, @required this.child});
   @override
-  Widget build(BuildContext context) {
-    return Hero(
-      tag: tag,
-      child: Material(
-        color: Colors.transparent,
-        child: child,
-      ),
-    );
-  }
+  Widget build(BuildContext context) => Hero(
+        tag: tag,
+        child: Material(
+          color: Colors.transparent,
+          child: child,
+        ),
+      );
 }
