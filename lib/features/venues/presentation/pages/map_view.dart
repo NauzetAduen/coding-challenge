@@ -27,8 +27,8 @@ class _MapViewState extends State<MapView> {
       markersFromList.add(Marker(
           markerId: MarkerId(venue.id),
           position: LatLng(venue.location.latitude, venue.location.longitude),
-          icon:
-              BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueYellow),
+          icon: BitmapDescriptor.defaultMarkerWithHue(46),
+          //46 is the hue color of F2BB05, our accent color
           //TODO color red for favorites?
           infoWindow: InfoWindow(
               title: venue.name,

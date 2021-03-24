@@ -40,7 +40,9 @@ class _DetailedVenueViewState extends State<DetailedVenueView> {
       markerId: MarkerId(widget.venue.id),
       position: LatLng(
           widget.venue.location.latitude, widget.venue.location.longitude),
-      icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueYellow),
+
+      ///46 is the hue color of F2BB05, our accent color
+      icon: BitmapDescriptor.defaultMarkerWithHue(46),
     );
 
     BlocProvider.of<DetailsBloc>(context)
