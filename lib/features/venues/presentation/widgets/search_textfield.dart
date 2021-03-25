@@ -61,12 +61,16 @@ class _SearchTextFieldState extends State<SearchTextField> {
             //https://stackoverflow.com/questions/51791501/how-to-debounce-textfield-onchange-in-dart
 
             if (_debounce?.isActive ?? false) _debounce.cancel();
-            _debounce = Timer(const Duration(milliseconds: 1500), () {
-              BlocProvider.of<VenuesBloc>(context)
-                  .add(GetVenuesEvent(queryParams: {'query': controller.text}));
-            });
+            if (value.isNotEmpty) {
+              _debounce = Timer(const Duration(milliseconds: 1500), () {
+                BlocProvider.of<VenuesBloc>(context).add(
+                    GetVenuesEvent(queryParams: {'query': controller.text}));
+                controller.clear();
+              });
+            }
           },
-          onEditingComplete: () {
+          onSubmitted: (value) {
+            print("ON SUBMITTED");
             _debounce?.cancel();
             //https://flutterigniter.com/dismiss-keyboard-form-lose-focus/
             final FocusScopeNode currentFocus = FocusScope.of(context);
