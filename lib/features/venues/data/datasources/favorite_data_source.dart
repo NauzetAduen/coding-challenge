@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class FavoriteDataSource {
-  Set<String> changeLikeStatus(String venueID);
+  Set<String> toogleLikeStatus(String venueID);
 }
 
 class SPFavoriteDataSourceImpl implements FavoriteDataSource {
@@ -10,7 +10,7 @@ class SPFavoriteDataSourceImpl implements FavoriteDataSource {
 
   SPFavoriteDataSourceImpl({@required this.sharedPreferences});
   @override
-  Set<String> changeLikeStatus(String venueID) {
+  Set<String> toogleLikeStatus(String venueID) {
     final value = sharedPreferences.getString(venueID);
     //if exist, we remove it
     if (value != null) {

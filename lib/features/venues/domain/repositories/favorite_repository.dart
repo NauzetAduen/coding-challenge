@@ -11,5 +11,5 @@ class FavoriteRepositoryImpl implements FavoriteRepository {
   FavoriteRepositoryImpl({@required this.favoriteDataSource});
   @override
   Set<String> toogleFavoriteStatus(String venueID) =>
-      favoriteDataSource.changeLikeStatus(venueID);
+      favoriteDataSource.toogleLikeStatus(venueID);
 }

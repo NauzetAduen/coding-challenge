@@ -15,7 +15,7 @@ void main() {
       when(mockSharedPreferences.getString(any)).thenAnswer((_) => "");
       when(mockSharedPreferences.getKeys()).thenAnswer((_) => {});
 
-      final result = favoriteDataSourceImpl.changeLikeStatus("testID");
+      final result = favoriteDataSourceImpl.toogleLikeStatus("testID");
 
       expect(result, isA<Set<String>>());
     });
@@ -23,7 +23,7 @@ void main() {
       when(mockSharedPreferences.getString("testID")).thenAnswer((_) => null);
       when(mockSharedPreferences.getKeys()).thenAnswer((_) => {"testID"});
 
-      final result = favoriteDataSourceImpl.changeLikeStatus("testID");
+      final result = favoriteDataSourceImpl.toogleLikeStatus("testID");
 
       expect(result.contains("testID"), true);
     });
@@ -33,7 +33,7 @@ void main() {
           .thenAnswer((_) => "testID");
       when(mockSharedPreferences.getKeys()).thenAnswer((_) => {});
 
-      final result = favoriteDataSourceImpl.changeLikeStatus("testID");
+      final result = favoriteDataSourceImpl.toogleLikeStatus("testID");
 
       expect(result.contains("testID"), false);
     });
