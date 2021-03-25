@@ -43,7 +43,7 @@ We dont have UI test at the moment. If we run
 
      flutter test
      
-in the project folder,two tests will fail, the explanation is in the test. It's basically the impossibility to test static methods with mockito.
+in the project folder,two tests will fail, the explanation is in the test. It's basically the impossibility to test static methods (geolocator) with mockito.
 
 ## Functionality
 - Uses foursquare api to search venues
@@ -60,4 +60,13 @@ You will need to run the one submitted in the [job aplication page](https://aded
     flutter run
 
 If this doens't work, I will provide the needed files.
+
+## Resources
+- [Trello](https://trello.com/b/sQuq8uh5/coding-challenge)
+
+- [Figma](https://www.figma.com/file/xVGG6dyuxzEewmaaqxy7aS/Coding-Challenge)
+
+- [Github](https://github.com/NauzetAduen/coding-challenge)
+
+
 
