@@ -1,9 +1,20 @@
-import 'dart:async';
-
+import 'package:coding_challenge/features/venues/presentation/bloc/favorite_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-void main() => runApp(CodingChallengeApp());
+import 'core/app_theme.dart';
+import 'core/router.dart';
+import 'features/venues/presentation/bloc/details_bloc.dart';
+import 'features/venues/presentation/bloc/favorite_bloc.dart';
+import 'features/venues/presentation/bloc/venues_bloc.dart';
+import 'injection.dart';
+
+// ignore: avoid_void_async
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await init();
+  runApp(CodingChallengeApp());
+}
 
 const appName = "Coding Challenge";
 
@@ -13,26 +24,23 @@ class CodingChallengeApp extends StatefulWidget {
 }
 
 class _CodingChallengeAppState extends State<CodingChallengeApp> {
-  final Completer<GoogleMapController> _controller = Completer();
-
-  final CameraPosition _kGooglePlex = const CameraPosition(
-      target: LatLng(37.42796133580664, -122.085749655962), zoom: 14.4746);
   @override
-  Widget build(BuildContext context) => MaterialApp(
-      title: appName,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: Scaffold(
-          body: Center(
-              child: SizedBox(
-        width: 200,
-        height: 200,
-        child: GoogleMap(
-          initialCameraPosition: _kGooglePlex,
-          onMapCreated: (GoogleMapController controller) {
-            _controller.complete(controller);
-          },
-        ),
-      ))));
+  Widget build(BuildContext context) => MultiBlocProvider(
+          providers: [
+            BlocProvider<VenuesBloc>(
+              create: (context) => sl<VenuesBloc>(),
+            ),
+            BlocProvider<DetailsBloc>(
+              create: (context) => sl<DetailsBloc>(),
+            ),
+            BlocProvider<FavoriteBloc>(
+                create: (context) => sl<FavoriteBloc>()
+                  ..add(const ToogleFavoriteStatusEvent(venueID: ""))),
+          ],
+          child: MaterialApp(
+              debugShowCheckedModeBanner: false,
+              title: appName,
+              onGenerateRoute: CustomRouter.generateRoute,
+              initialRoute: '/',
+              theme: themeData));
 }

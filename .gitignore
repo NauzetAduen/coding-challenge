@@ -45,3 +45,4 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 lib/features/venues/data/datasources/venues_data_source_config.dart
+ios/Runner/AppDelegate.swift

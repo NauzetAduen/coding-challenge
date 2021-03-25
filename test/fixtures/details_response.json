@@ -1,0 +1,21 @@
+{
+    "meta": {
+        "code": 200
+    },
+    "response": {
+        "venue": {
+            "contact": {
+                "phone": "1234",
+                "twitter": "tw",
+                "facebook": "fb",
+                "instagram": "insta"
+            },
+            "verified": true,
+            "url": "url",
+            "description": "description",
+            "hereNow": {
+                "summary": "summary"
+            }
+        }
+    }
+}
