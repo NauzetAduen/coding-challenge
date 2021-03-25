@@ -17,7 +17,7 @@ import '../widgets/venues_listview.dart';
 class MainView extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Scaffold(
-        resizeToAvoidBottomInset: false,
+        resizeToAvoidBottomInset: true,
         appBar: AppBar(
           title:
               Text("fourSquare", style: Theme.of(context).textTheme.headline1),
