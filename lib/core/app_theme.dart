@@ -12,6 +12,8 @@ ThemeData themeData = ThemeData(
   accentColor: accentColor,
   dividerColor: grey,
   cardColor: imperialRed,
+  textSelectionTheme:
+      const TextSelectionThemeData(selectionHandleColor: accentColor),
   textTheme: GoogleFonts.montserratTextTheme(textTheme),
 );
 
