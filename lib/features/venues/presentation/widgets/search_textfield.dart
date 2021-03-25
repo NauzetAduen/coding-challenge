@@ -70,7 +70,6 @@ class _SearchTextFieldState extends State<SearchTextField> {
             }
           },
           onSubmitted: (value) {
-            print("ON SUBMITTED");
             _debounce?.cancel();
             //https://flutterigniter.com/dismiss-keyboard-form-lose-focus/
             final FocusScopeNode currentFocus = FocusScope.of(context);
