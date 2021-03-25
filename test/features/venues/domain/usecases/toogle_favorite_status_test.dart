@@ -1,4 +1,4 @@
-import 'package:coding_challenge/features/venues/domain/repositories/favorite_repository.dart';
+import 'package:coding_challenge/features/venues/data/repositories/favorite_repository_impl.dart';
 import 'package:coding_challenge/features/venues/domain/usecases/toogle_favorite_status.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';

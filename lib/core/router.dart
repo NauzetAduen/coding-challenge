@@ -5,6 +5,7 @@ import '../features/venues/presentation/pages/detailed_view.dart';
 import '../features/venues/presentation/pages/main_view.dart';
 import '../features/venues/presentation/pages/map_view.dart';
 
+///Custom router class to simplify routing and params
 class CustomRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     final args = settings.arguments;
@@ -28,6 +29,7 @@ class CustomRouter {
   }
 }
 
+///Custom pageRouter for animated transitions
 PageRouteBuilder pageRouteBuilder(Widget destination) {
   return PageRouteBuilder(
       pageBuilder: (context, animation, another) => destination,

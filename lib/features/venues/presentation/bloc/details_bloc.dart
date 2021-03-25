@@ -11,6 +11,15 @@ part 'details_state.dart';
 
 const String unknownError = "Unknown error";
 
+///State Managemenent
+///
+///When ui calls for GetDetailsEvent:
+///
+///use getDetails Usecase and yield states depending of returning types:
+///
+///Failures --> errorsStates
+///
+///details --> LoadedState
 class DetailsBloc extends Bloc<DetailsEvent, DetailsState> {
   final GetDetails getDetails;
 

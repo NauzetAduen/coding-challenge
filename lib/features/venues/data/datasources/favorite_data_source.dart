@@ -5,6 +5,11 @@ abstract class FavoriteDataSource {
   Set<String> toogleLikeStatus(String venueID);
 }
 
+///Layer to access data
+///
+///We use SharedPreferences for simplicity
+///
+///We use keys to know if a venue is favorited
 class SPFavoriteDataSourceImpl implements FavoriteDataSource {
   final SharedPreferences sharedPreferences;
 

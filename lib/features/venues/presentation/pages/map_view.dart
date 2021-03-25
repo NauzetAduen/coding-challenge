@@ -6,6 +6,11 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import '../../domain/entities/venue.dart';
 import '../bloc/favorite_bloc.dart';
 
+///Map with all the venues
+///
+///Can navigate to detailed view
+///
+///Extends StatefulWidget for a simply way to update marker colors.
 class MapView extends StatefulWidget {
   final List<Venue> list;
 
@@ -20,7 +25,6 @@ class _MapViewState extends State<MapView> {
   Venue firstVenue;
   Set<Marker> markersFromList = {};
   CameraPosition cameraPosition;
-  // FavoriteBloc favoriteBloc;
   Set<String> favoriteSet = {};
 
   @override
@@ -60,6 +64,9 @@ class _MapViewState extends State<MapView> {
             mapController = controller;
 
             //https://flutter.dev/docs/development/ui/assets-and-images
+
+            //Uses a modified map style
+            //https://mapstyle.withgoogle.com/
             mapController.setMapStyle(
                 await rootBundle.loadString("assets/map/config.json"));
           },
@@ -77,6 +84,7 @@ class _MapViewState extends State<MapView> {
     double hue;
     for (final venue in widget.list) {
       if (favoriteSet.contains(venue.id)) {
+        //we show different colors depending if is already favorited
         hue = 356;
       } else {
         hue = 46;
@@ -85,8 +93,6 @@ class _MapViewState extends State<MapView> {
           markerId: MarkerId(venue.id),
           position: LatLng(venue.location.latitude, venue.location.longitude),
           icon: BitmapDescriptor.defaultMarkerWithHue(hue),
-          //46 is the hue color of F2BB05, our accent color
-          //TODO color red for favorites?
           infoWindow: InfoWindow(
               title: venue.name,
               snippet: venue.location.locationName,

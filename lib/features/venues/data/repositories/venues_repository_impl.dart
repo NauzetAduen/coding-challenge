@@ -10,6 +10,11 @@ import '../../domain/entities/venue_details.dart';
 import '../../domain/repositories/venues_repository.dart';
 import '../datasources/venues_data_source.dart';
 
+///Implements Domain contract
+///
+///Catch Exceptions and return Failures is something goes wrong
+///
+///Check internet connection before using datasources with external apis
 class VenuesRepositoryImpl implements VenuesRepository {
   final VenuesDataSource venuesDataSource;
   final NetworkInfo networkInfo;

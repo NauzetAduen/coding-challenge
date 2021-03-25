@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-//TODO theme
-
+//Main colors
 const Color accentColor = Color(0xfff2bb05);
 const Color grey = Color(0xff66666E);
 const Color imperialRed = Color(0xffF02D3A);
+
 ThemeData themeData = ThemeData(
   brightness: Brightness.light,
   primaryColor: Colors.black,
@@ -15,6 +15,7 @@ ThemeData themeData = ThemeData(
   textSelectionTheme:
       const TextSelectionThemeData(selectionHandleColor: accentColor),
   textTheme: GoogleFonts.montserratTextTheme(textTheme),
+  //we use googleFont library to dynamically get fonts
 );
 
 const TextTheme textTheme = TextTheme(

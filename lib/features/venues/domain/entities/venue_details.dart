@@ -1,6 +1,9 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 
+///Simple venue Details entity
+///
+///Unlike VenueDetailsModel, it's platform/datasource independent
 class VenueDetails extends Equatable {
   final String description;
   final bool verified;

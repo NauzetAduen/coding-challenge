@@ -8,6 +8,7 @@ import 'description.dart';
 import 'fixed_box.dart';
 import 'summary.dart';
 
+///Column for detailed extra info
 class DetailsColumn extends StatelessWidget {
   final VenueDetails venueDetails;
   const DetailsColumn({

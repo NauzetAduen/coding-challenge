@@ -1,10 +1,11 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 
-/*
-  Simple venue entity
-  which use own Location and Category classes
-*/
+///Simple venue entity
+///
+///which use own Location and Category classes
+///
+///Unlike VenueModel, it's platform/datasource independent
 class Venue extends Equatable {
   final String id;
   final String name;

@@ -15,6 +15,13 @@ import '../widgets/fixed_box.dart';
 import '../widgets/loading_box.dart';
 import '../widgets/text_error.dart';
 
+///Scaffold for detailed view
+///
+///Shows the venue data already known
+///
+///Shows a map with the venue
+///
+///Calls for Details
 class DetailedVenueView extends StatefulWidget {
   final Venue venue;
 
@@ -45,6 +52,7 @@ class _DetailedVenueViewState extends State<DetailedVenueView> {
           widget.venue.location.latitude, widget.venue.location.longitude),
 
       ///46 is the hue color of F2BB05, our accent color
+      ///we dont use favorite/normal colors here, because there is only one marker in this map.
       icon: BitmapDescriptor.defaultMarkerWithHue(46),
     );
 
@@ -88,15 +96,9 @@ class _DetailedVenueViewState extends State<DetailedVenueView> {
             ),
           ],
         ),
-
-        /*
-
-
-        */
         body: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
           child: Column(
-            // mainAxisSize: MainAxisSize.max,
             children: [
               SizedBox(
                 width: double.infinity,

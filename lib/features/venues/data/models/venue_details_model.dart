@@ -2,6 +2,9 @@ import 'package:flutter/foundation.dart';
 
 import '../../domain/entities/venue_details.dart';
 
+///Has serialization, not like VenueDetails entity, to avoid Venue being over exposed to datasources.
+///
+///Transforming raw data required conversion logic
 class VenueDetailsModel extends VenueDetails {
   const VenueDetailsModel({
     @required String description,

@@ -14,10 +14,21 @@ abstract class VenuesDataSource {
   Future<VenueDetails> getDetails(String venueID);
 }
 
+///Layer to acess data
+///
+///[Throws DioErrors and PermissionExceptions]
+///
+///Uses Dio httpclient for simpliticy in timeouts and other query params
 class VenuesDataSourceImpl implements VenuesDataSource {
   final Dio dio;
 
   VenuesDataSourceImpl({@required this.dio});
+
+  ///Get a List of Venues if Geolocator works
+  ///
+  ///if not, throws Exceptions
+  ///
+  ///if response status is not 200, return empty array
   @override
   Future<List<Venue>> getVenues(Map<String, dynamic> queryParams) async {
     final bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
@@ -75,13 +86,19 @@ class VenuesDataSourceImpl implements VenuesDataSource {
     }
   }
 
+  ///get details of a single venue
+  ///
+  ///Hast a limit usage (90~ per day)
+  ///
+  /// return a VenueDetails or null depending on statusCode
   @override
   Future<VenueDetails> getDetails(String venueID) async {
     try {
-      final BaseOptions baseOptions =
-          BaseOptions(method: 'GET', baseUrl: baseURL,
-              // connectTimeout: connectTimeout,
-              queryParameters: {
+      final BaseOptions baseOptions = BaseOptions(
+          method: 'GET',
+          baseUrl: baseURL,
+          connectTimeout: connectTimeout,
+          queryParameters: {
             'client_id': clientID,
             'client_secret': clientSecret,
             'v': version,

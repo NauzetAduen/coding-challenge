@@ -13,6 +13,15 @@ part 'venues_state.dart';
 
 const String unknownError = "Unknown error";
 
+///State Managemenent
+///
+///When ui calls for GetVenuesEvent:
+///
+///use getVenue Usecase and yield states depending of returning types:
+///
+///Failures --> errorsStates
+///
+///details --> LoadedState or EmptyState
 class VenuesBloc extends Bloc<VenuesEvent, VenuesState> {
   final GetVenues getVenues;
 

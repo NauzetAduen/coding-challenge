@@ -6,6 +6,11 @@ part 'favorite_event.dart';
 
 part 'favorite_state.dart';
 
+///State Management
+///
+///Toogle favorite status for a venue, and yield LoadedStatus
+///
+///Extremely simple compared to others blocs
 class FavoriteBloc extends Bloc<FavoriteEvent, FavoriteState> {
   final ToogleFavoriteStatus toogleFavoriteStatus;
 

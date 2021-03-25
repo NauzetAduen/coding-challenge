@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../bloc/favorite_bloc.dart';
 
+///FavoriteButton with toogle functionality
 class FavoriteButton extends StatelessWidget {
   final Color color;
   final String venueID;

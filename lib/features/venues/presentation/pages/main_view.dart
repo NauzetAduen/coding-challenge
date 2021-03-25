@@ -9,6 +9,11 @@ import '../widgets/search_textfield.dart';
 import '../widgets/text_error.dart';
 import '../widgets/venues_listview.dart';
 
+///Show a fixed SearchTextField and depending of the state of the app,
+///
+///show error messages or a ListView with Venues.
+///
+///FAB is used for navigate to a mapView, as suggested in the challenge.
 class MainView extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Scaffold(

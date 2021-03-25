@@ -5,6 +5,9 @@ abstract class NetworkInfo {
   Future<bool> get isConnected;
 }
 
+/// Controls connectivity
+///
+/// Makes calls to predefined reliable addresses.
 class NetworkInfoImpl implements NetworkInfo {
   final DataConnectionChecker connectionChecker;
 

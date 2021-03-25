@@ -9,6 +9,8 @@ import 'favorite_button.dart';
 const double iconSize = 30;
 
 ///listview for listtiles with each venue
+///
+///Navigate to detailed
 class VenuesListView extends StatelessWidget {
   final List<Venue> list;
 

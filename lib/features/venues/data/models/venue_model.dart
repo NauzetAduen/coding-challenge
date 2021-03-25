@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 
 import '../../domain/entities/venue.dart';
 
+///Has serialization, not like Venue, to avoid Venue being over exposed to datasources.
+///
+///Transforming raw data required conversion logic
 class VenueModel extends Venue {
   const VenueModel({
     @required String id,

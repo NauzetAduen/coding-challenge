@@ -6,6 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'core/network/network_info.dart';
 import 'features/venues/data/datasources/favorite_data_source.dart';
 import 'features/venues/data/datasources/venues_data_source.dart';
+import 'features/venues/data/repositories/favorite_repository_impl.dart';
 import 'features/venues/data/repositories/venues_repository_impl.dart';
 import 'features/venues/domain/repositories/favorite_repository.dart';
 import 'features/venues/domain/repositories/venues_repository.dart';

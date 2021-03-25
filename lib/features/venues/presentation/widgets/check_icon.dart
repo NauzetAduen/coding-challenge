@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 const double iconSize = 20;
 
+///Controls if a venue is verified
 class CheckIcon extends StatelessWidget {
   final bool verified;
 
