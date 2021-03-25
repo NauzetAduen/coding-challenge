@@ -33,7 +33,6 @@ class _CodingChallengeAppState extends State<CodingChallengeApp> {
             BlocProvider<DetailsBloc>(
               create: (context) => sl<DetailsBloc>(),
             ),
-            //TODO ..add()
             BlocProvider<FavoriteBloc>(
                 create: (context) => sl<FavoriteBloc>()
                   ..add(const ToogleFavoriteStatusEvent(venueID: ""))),
